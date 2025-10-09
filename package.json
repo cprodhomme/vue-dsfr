@@ -45,7 +45,7 @@
     "npm": ">=10.x.x"
   },
   "publishConfig": {
-    "@gouvminint:registry": "https://registry.npmjs.com",
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "scripts": {
