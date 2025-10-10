@@ -45,7 +45,7 @@
     "npm": ">=10.x.x"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
+    "@cprodhomme:registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "scripts": {
