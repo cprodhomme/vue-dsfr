@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+import type { DsfrInputGroupProps } from './DsfrInput.types'
+
 import { computed } from 'vue'
 
 import { useRandomId } from '../../utils/random-utils'
 
 import DsfrInput from './DsfrInput.vue'
-import type { DsfrInputGroupProps } from './DsfrInput.types'
 
 export type { DsfrInputGroupProps }
 
@@ -55,7 +56,7 @@ const descId = computed(() => {
     class="fr-input-group"
     :class="[
       {
-        'fr-input-group--disabled': 'disabled' in $attrs,
+        'fr-input-group--disabled': 'disabled' in $attrs && $attrs.disabled !== false && $attrs.disabled !== undefined,
         'fr-input-group--error': errorMessage,
         'fr-input-group--valid': (validMessage && !errorMessage),
       },

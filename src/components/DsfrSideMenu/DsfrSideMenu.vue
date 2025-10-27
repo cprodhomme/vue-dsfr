@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import type { DsfrSideMenuProps } from './DsfrSideMenu.types'
+
 import { ref, watch } from 'vue'
 
 import { useCollapsable } from '../../composables'
 import { useRandomId } from '../../utils/random-utils'
 
 import DsfrSideMenuList from './DsfrSideMenuList.vue'
-import type { DsfrSideMenuProps } from './DsfrSideMenu.types'
 
 export type { DsfrSideMenuProps }
 
@@ -62,7 +63,7 @@ watch(expanded, (newValue, oldValue) => {
         ref="collapse"
         class="fr-collapse"
         :class="{
-          'fr-collapse--expanded': cssExpanded, // Need to use a separate data to add/remove the class after a RAF
+          'fr-collapse--expanded': cssExpanded, // Need to use a separate data to add/remove the class after a requestAnimationFrame (RAF)
           'fr-collapsing': collapsing,
         }"
         @transitionend="onTransitionEnd(expanded, focusOnExpanding)"

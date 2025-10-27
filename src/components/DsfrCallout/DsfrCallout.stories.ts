@@ -1,5 +1,6 @@
-import { expect, fn, userEvent, within } from '@storybook/test'
 import type { Meta } from '@storybook/vue3'
+
+import { expect, fn, userEvent, within } from '@storybook/test'
 
 import VIcon from '../VIcon/VIcon.vue'
 
@@ -28,6 +29,11 @@ const meta: Meta<typeof DsfrCallout> = {
       control: 'text',
       description:
         'Permet de passer l’icône désirée en chaîne de caractères (cf. remix-icon)',
+    },
+    accent: {
+      control: 'text',
+      description:
+        'Permet de passer la couleur d‘accentuation',
     },
     button: {
       control: 'object',
@@ -161,4 +167,41 @@ MiseEnAvantSansTitre.args = {
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dol',
   titleTag: undefined,
+}
+
+export const MiseEnAvantAvecAccentuation = (args) => ({
+  components: {
+    DsfrCallout,
+    VIcon,
+  },
+
+  data () {
+    return {
+      ...args,
+      button: args.button && {
+        ...args.button,
+        onClick: args.onClick,
+      },
+    }
+  },
+
+  template: `
+    <DsfrCallout
+      :title
+      :content
+      :button
+      :icon
+      :title-tag
+      :accent
+    />
+  `,
+})
+MiseEnAvantAvecAccentuation.args = {
+  title: 'Titre de la mise en avant',
+  button: undefined,
+  icon: '',
+  content:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dol',
+  titleTag: undefined,
+  accent: 'orange-terre-battue',
 }

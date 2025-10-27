@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-import { onMounted, watch } from 'vue'
+import type { DsfrSideMenuListProps } from './DsfrSideMenu.types'
 import type { RouteLocationRaw } from 'vue-router'
+
+import { onMounted, watch } from 'vue'
 
 import { useCollapsable } from '../../composables'
 
 import DsfrSideMenuButton from './DsfrSideMenuButton.vue'
 import DsfrSideMenuListItem from './DsfrSideMenuListItem.vue'
-import type { DsfrSideMenuListProps } from './DsfrSideMenu.types'
 
 export type { DsfrSideMenuListProps }
 
@@ -84,7 +85,7 @@ const linkProps = (to: string | RouteLocationRaw | undefined) => {
             :active="!!menuItem.active"
             :expanded="!!menuItem.expanded"
             :control-id="(menuItem.id as string)"
-            @toggle-expand="$emit('toggleExpand', $event)"
+            @toggle-expand="menuItem.expanded = !menuItem.expanded"
           >
             {{ menuItem.text }}
           </DsfrSideMenuButton>
@@ -92,7 +93,7 @@ const linkProps = (to: string | RouteLocationRaw | undefined) => {
             v-if="menuItem.menuItems"
             :id="(menuItem.id as string)"
             collapsable
-            :expanded="menuItem.expanded"
+            :expanded="!!menuItem.expanded"
             :menu-items="menuItem.menuItems"
             @toggle-expand="$emit('toggleExpand', $event)"
           />
